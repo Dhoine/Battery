@@ -176,7 +176,7 @@
             this.timeoutBar.Size = new System.Drawing.Size(544, 46);
             this.timeoutBar.TabIndex = 1;
             this.timeoutBar.Value = 1;
-            this.timeoutBar.Scroll += new System.EventHandler(this.timeoutBar_Scroll);
+            this.timeoutBar.ValueChanged += new System.EventHandler(this.timeoutBar_ValueChanged);
             // 
             // Battery
             // 
