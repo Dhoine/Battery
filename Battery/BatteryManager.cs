@@ -65,8 +65,13 @@ namespace Battery
             Percentage = SystemInformation.PowerStatus.BatteryLifePercent * 100 + @"%";
             if (State == "Offline")
             {
-                var span = new TimeSpan(0, 0, SystemInformation.PowerStatus.BatteryLifeRemaining);
-                TimeLeft = span.ToString("g");
+                var temp = SystemInformation.PowerStatus.BatteryLifeRemaining;
+                if (temp != -1)
+                {
+                    var span = new TimeSpan(0, 0, temp);
+                    TimeLeft = span.ToString("g");
+                }
+                else TimeLeft = @"Calculating....";
             }
             else
             {

@@ -15,6 +15,7 @@ namespace Battery
         private void Battery_Load(object sender, EventArgs e)
         {
             _manager.Init();
+            if (_manager.State == "Online") timeoutBar.Enabled = false;
             UpdateBatteryStatus(null, null);
             UpdateTimer.Tick += UpdateBatteryStatus;
             UpdateTimer.Interval = 2000;
@@ -38,6 +39,11 @@ namespace Battery
                     timeoutBar.Value = _manager.PrevTimeout;
                     timeoutLabel.Text = @"Screen timeout in minutes(only for battery) 
 " + timeoutBar.Value + @" min now.";
+                    timeoutBar.Enabled = false;
+                }
+                else
+                {
+                    timeoutBar.Enabled = true;
                 }
                 _manager.PrevState = State.Text;
             }
