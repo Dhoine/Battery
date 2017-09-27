@@ -63,8 +63,15 @@ namespace Battery
                 OnLaunch = false;
             }
             Percentage = SystemInformation.PowerStatus.BatteryLifePercent * 100 + @"%";
-            var span = new TimeSpan(0, 0, SystemInformation.PowerStatus.BatteryLifeRemaining);
-            TimeLeft = span.ToString("g");
+            if (State == "Offline")
+            {
+                var span = new TimeSpan(0, 0, SystemInformation.PowerStatus.BatteryLifeRemaining);
+                TimeLeft = span.ToString("g");
+            }
+            else
+            {
+                TimeLeft = @"Device is connected to AC.";
+            }
         }
 
         /// <summary>
